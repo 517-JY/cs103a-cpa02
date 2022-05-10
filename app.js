@@ -144,18 +144,17 @@ const nobelprizes = require("./public/data/nobelprize.json");
 // this route loads in the nobelprizes into the Prize collection
 // or updates the courses if it is not a new collection
 
-// app.get("/upsertDB", async (req, res, next) => {
-//   //await Course.deleteMany({})
-//   for (nobelprize of nobelprizes) {
-//     const { year, category, laureates } = nobelprize;
+app.get("/upsertDB", async (req, res, next) => {
+  for (nobelprize of nobelprizes) {
+    const { year, category, laureates } = nobelprize;
 
-//     await Prize.findOneAndUpdate({ year, category, laureates }, nobelprize, {
-//       upsert: true,
-//     });
-//   }
-//   const num = await Prize.find({}).count();
-//   res.send("prize data uploaded: " + num);
-// });
+    await Prize.findOneAndUpdate({ year, category, laureates }, nobelprize, {
+      upsert: true,
+    });
+  }
+  const num = await Prize.find({}).count();
+  res.send("prize data uploaded: " + num);
+});
 
 // specify that the server should render the views/index.ejs page for the root path
 // and the index.ejs code will be wrapped in the views/layouts.ejs code which provides
@@ -173,7 +172,8 @@ app.get("/", (req, res, next) => {
   }
 
   res.render("index");
-  // res.json(nobelprizes);
+  // res.json(nobleprizes);
+  // res.json(nobelprizes.length);
 });
 
 app.post(
@@ -280,14 +280,13 @@ app.get(
   Functions needed for the course finder routes
    ************************ */
 
-function getNum(coursenum) {
-  // separate out a coursenum 103A into
-  // a num: 103 and a suffix: A
-  i = 0;
-  while (i < coursenum.length && "0" <= coursenum[i] && coursenum[i] <= "9") {
-    i = i + 1;
+function getNum(laureates) {
+  // get how many laureates in one Prize Object
+  if (laureates) {
+    return laureates.length;
+  } else {
+    return 0;
   }
-  return coursenum.slice(0, i);
 }
 
 function times2str(times) {
