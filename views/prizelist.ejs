@@ -1,6 +1,7 @@
-<h3>The Nobel Prizes are</h3>
+<h3>Search Result</h3>
 
 <hr />
+<h6>We have <%=prizes.length%> Mobel Prizes found based on your search</h6>
 
 <% if (prizes.length == 0){%>
 <hr />
@@ -15,10 +16,10 @@
       <hr />
       Laureates :
       <ul>
-        <% for (laureate of prize.laureates){ %>
+        <% if(prize.laureates) {%> <% for (laureate of prize.laureates){ %>
         <li><%= laureate.firstname %> <%= laureate.surname %> <br /></li>
 
-        <% } %>
+        <% } %> <%}%>
       </ul> </b
     ><br />
   </div>
