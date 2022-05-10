@@ -1,10 +1,35 @@
-<h1>L38</h1>
-<ul>
-    <li><a href="/overheardForm">Overheard at Brandeis demo</a></li>
-    <li><a href="/coursefinder">Course finder demo</a></li>
-    <li><a href="/demo4stage">4 stage aggregation demo</a></li>
-    <li><a href="/pivot/onInstructor">Pivot table on instructor</a></li>
-    <li><a href="/deptTeachingLoads/COSI">Teaching loads for COSI</a></li>
-    <li><a href="/smallclasses">Small Classes</a></li>
-    <li><a href="/bigclasses/150">Big classes (> 150)</a></li>
-</ul>
+
+    <div class="jumbotron">
+        <h1>CPA-02: Nobel Prize Information Finder</h1>
+        <p></p>
+    </div>
+
+    <p class="p-3  border border-primary border-2 bg-light">
+        This app let users find information about Nobel Prize        --
+        <i>Data source : https://api.nobelprize.org/v1/prize.json</i>
+    </p>
+
+    <form method="post" action="/prizes/byYear">
+        Show Nobel Prizes by Year:  
+          <input type="text" name="year" 
+                 placeholder="e.g. 2021">
+        <input type="submit">
+    </form>
+    <br>
+    <!-- <form method="post" action="/prizes/byCategory">
+        Show Nobel Prizes by Category:  
+          <input type="text" name="category" 
+                 placeholder="peace">
+        <input type="submit">
+    </form> -->
+
+
+    <form method="post" action="/prizes/byCategory">
+        Show Nobel Prizes by Category: 
+        <select id="category" name="category">
+            <% for (cate of categories) {%>
+                <option><%= cate%></option>  
+             <% } %>     
+        <input type="submit">
+    </form>
+    <br>
