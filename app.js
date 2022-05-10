@@ -153,7 +153,7 @@ app.get("/upsertDB", async (req, res, next) => {
     });
   }
   const num = await Prize.find({}).count();
-  res.send("prize data uploaded: " + num);
+  res.send("prize data uploaded: " + num); // which get 658 nobel prize records in total
 });
 
 // specify that the server should render the views/index.ejs page for the root path
@@ -181,42 +181,20 @@ app.post(
   // show list of prizes within a given year
   async (req, res, next) => {
     const { year } = req.body;
-    const courses = await Course.find({
-      subject: subject,
-      independent_study: false,
-    }).sort({ term: 1, num: 1, section: 1 });
+    const prizes = await Prize.find({
+      year: year,
+    });
 
-    res.locals.courses = courses;
-    // res.locals.times2str = times2str
-    //res.json(courses)
-    res.render("courselist");
+    res.locals.prizes = prizes;
+
+    // res.json(prizes);
+    // res.json(prizes.length);
+    res.render("prizelist");
   }
 );
 
 app.get("/about", (req, res, next) => {
   res.render("about");
-});
-
-app.get("/demo/:subject", async (req, res, next) => {
-  try {
-    const theCourses = await Course.find({ subject: req.params.subject });
-    res.json(theCourses);
-  } catch (e) {
-    next(e);
-  }
-});
-
-app.get("/demo", async (req, res, next) => {
-  try {
-    const theCourses = await Course.find({
-      subject: "COSI",
-      independent_study: false,
-      enrolled: { $gt: 100 },
-    });
-    res.json(theCourses);
-  } catch (e) {
-    next(e);
-  }
 });
 
 /*
