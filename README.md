@@ -3,7 +3,13 @@
 This is a search app for users to search Nobel Prize Information based on key words
 
 ## Search
+![Screen Shot 2022-05-10 at 9 35 18 PM](https://user-images.githubusercontent.com/64394513/167751269-073d08ca-d3f8-49f0-a5a8-9d4f98cb1e30.png)
 
+Search Keyword
+``` bash
+By Year
+By Category
+```
 
 Data Source
 ``` bash
@@ -13,12 +19,9 @@ Database
 ``` bash
 cloud-based MongoDB
 ```
-or install nodemon (the node monitoring app) with
-``` bash
-npm install -g nodemon
 ```
 Short Movie
 ``` bash
-randeis.zoom.us/rec/play/GosAc9wrlxrMNWbZVwUA2auAq38BOTeeiSrmNrXWIS92-eGnOCyAkX_m69IKniPRI6m8hAUwrkxDknmZ.p7UldlMdw4mG2Q-X?startTime=1652232073000
+https://brandeis.zoom.us/rec/share/f3KMSgaVcfIjMuivbZWAqwJkAXkIeAhNsC0vnMKC7cGCDYeXJc3WhXO0WB1JmrmB.29JQHSDb-tbgVvAU?startTime=1652232073000
 ```
 
