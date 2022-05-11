@@ -1,25 +1,37 @@
 # CS103a Express App Demo
 
-This is a search app for users find Nobel Prize information based on key words
+This is a search app for users to search Nobel Prize Information based on certain key words
 
-## Searching
-Download the project from github and download nodejs and npm from https://nodejs.org
-and cd into the folder
+## Search
+![Screen Shot 2022-05-10 at 9 35 18 PM](https://user-images.githubusercontent.com/64394513/167751269-073d08ca-d3f8-49f0-a5a8-9d4f98cb1e30.png)
 
-Install the packages with
-``` Datasource
+Search Keyword
+``` bash
+By Year
+By Category
+```
+
+Search Result Template
+![Screen Shot 2022-05-10 at 9 37 28 PM](https://user-images.githubusercontent.com/64394513/167751459-41374475-4582-4a22-9cd2-4af06292574a.png)
+
+
+Data Source
+``` bash
 https://api.nobelprize.org/v1/prize.json
 ```
-Start the project with
+Database 
 ``` bash
-node app.js
+cloud-based MongoDB
 ```
-or install nodemon (the node monitoring app) with
+![Screen Shot 2022-05-10 at 9 38 17 PM](https://user-images.githubusercontent.com/64394513/167751556-04a23bf9-74b0-45b7-b992-bfb985cd3ba5.png)
+
+
+Short Movie
 ``` bash
-npm install -g nodemon
-```
-and start the project with
-``` bash
-nodemon
+https://brandeis.zoom.us/rec/share/f3KMSgaVcfIjMuivbZWAqwJkAXkIeAhNsC0vnMKC7cGCDYeXJc3WhXO0WB1JmrmB.29JQHSDb-tbgVvAU?startTime=1652232073000
 ```
 
+Heroku Link (pending)
+``` bash
+https://lit-ocean-49778.herokuapp.com/ 
+```
