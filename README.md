@@ -1,26 +1,24 @@
 # CS103a Express App Demo
 
-This is a starter project which has a simple authentication module 
-and provides access to a mongoose database in the cloud.
+This is a search app for users to search Nobel Prize Information based on key words
 
-## Installation
-Download the project from github and download nodejs and npm from https://nodejs.org
-and cd into the folder
+## Search
 
-Install the packages with
+
+Data Source
 ``` bash
-npm install
+https://api.nobelprize.org/v1/prize.json
 ```
-Start the project with
+Database 
 ``` bash
-node app.js
+cloud-based MongoDB
 ```
 or install nodemon (the node monitoring app) with
 ``` bash
 npm install -g nodemon
 ```
-and start the project with
+Short Movie
 ``` bash
-nodemon
+randeis.zoom.us/rec/play/GosAc9wrlxrMNWbZVwUA2auAq38BOTeeiSrmNrXWIS92-eGnOCyAkX_m69IKniPRI6m8hAUwrkxDknmZ.p7UldlMdw4mG2Q-X?startTime=1652232073000
 ```
 
