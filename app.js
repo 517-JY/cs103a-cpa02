@@ -14,7 +14,9 @@ const session = require("express-session"); // to handle sessions using cookies
 const debug = require("debug")("personalapp:server");
 const layouts = require("express-ejs-layouts");
 const axios = require("axios");
+
 var MongoDBStore = require("connect-mongodb-session")(session);
+
 
 // *********************************************************** //
 //  Loading models
@@ -22,7 +24,9 @@ var MongoDBStore = require("connect-mongodb-session")(session);
 const ToDoItem = require("./models/ToDoItem");
 const Course = require("./models/Course");
 const Schedule = require("./models/Schedule");
+
 const Prize = require("./models/Prize");
+
 
 // *********************************************************** //
 //  Loading JSON datasets
@@ -40,6 +44,14 @@ const mongodb_URI = process.env.mongodb_URI;
 //const mongodb_URI = 'mongodb+srv://cs_sj:BrandeisSpr22@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 // const mongodb_URI =
 //   "mongodb+srv://jiayinli007:12345@cluster0.hcayx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+//const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
+// const mongodb_URI =
+//   "mongodb+srv://cs_sj:BrandeisSpr22@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+const mongodb_URI =
+  "mongodb+srv://jiayinli007:12345@cluster0.hcayx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
 
 mongoose.connect(mongodb_URI, {
   useNewUrlParser: true,
@@ -129,6 +141,7 @@ const isLoggedIn = (req, res, next) => {
   } else res.redirect("/login");
 };
 
+
 // let nobelprizes =[];
 // let getNobelPrizes= async () => {
 //   response = await axios.get('https://api.nobelprize.org/v1/prize.json');
@@ -138,11 +151,19 @@ const isLoggedIn = (req, res, next) => {
 
 const nobelprizes = require("./public/data/nobelprize.json");
 
+
+app.get("/about", (req, res, next) => {
+  res.render("about");
+});
+
+
+
 /* ************************
   Loading (or reloading) the prize data into a collection
    ************************ */
 // this route loads in the nobelprizes into the Prize collection
 // or updates the courses if it is not a new collection
+
 
 app.get("/upsertDB", async (req, res, next) => {
   for (nobelprize of nobelprizes) {
@@ -151,10 +172,12 @@ app.get("/upsertDB", async (req, res, next) => {
     await Prize.findOneAndUpdate({ year, category, laureates }, nobelprize, {
       upsert: true,
     });
+
   }
   const num = await Prize.find({}).count();
   res.send("prize data uploaded: " + num); // which get 658 nobel prize records in total
 });
+
 
 // specify that the server should render the views/index.ejs page for the root path
 // and the index.ejs code will be wrapped in the views/layouts.ejs code which provides
@@ -215,6 +238,38 @@ app.get("/about", (req, res, next) => {
 });
 
 app.use(isLoggedIn);
+
+
+
+/* ************************
+  Loading (or reloading) the data into a collection
+   ************************ */
+// this route loads in the courses into the Course collection
+// or updates the courses if it is not a new collection
+
+app.get("/upsertDB", async (req, res, next) => {
+  //await Course.deleteMany({})
+  for (course of courses) {
+    const { subject, coursenum, section, term } = course;
+    const num = getNum(coursenum);
+    course.num = num;
+    course.suffix = coursenum.slice(num.length);
+    await Course.findOneAndUpdate(
+      { subject, coursenum, section, term },
+      course,
+      { upsert: true }
+    );
+  }
+  const num = await Course.find({}).count();
+  res.send("data uploaded: " + num);
+});
+
+
+
+
+app.use(isLoggedIn);
+
+
 
 // here we catch 404 errors and forward to error handler
 app.use(function (req, res, next) {
