@@ -11,6 +11,10 @@ By Year
 By Category
 ```
 
+Search Result Template
+![Screen Shot 2022-05-10 at 9 37 28 PM](https://user-images.githubusercontent.com/64394513/167751459-41374475-4582-4a22-9cd2-4af06292574a.png)
+
+
 Data Source
 ``` bash
 https://api.nobelprize.org/v1/prize.json
@@ -19,7 +23,7 @@ Database
 ``` bash
 cloud-based MongoDB
 ```
-```
+
 Short Movie
 ``` bash
 https://brandeis.zoom.us/rec/share/f3KMSgaVcfIjMuivbZWAqwJkAXkIeAhNsC0vnMKC7cGCDYeXJc3WhXO0WB1JmrmB.29JQHSDb-tbgVvAU?startTime=1652232073000
