@@ -241,30 +241,6 @@ app.use(isLoggedIn);
 
 
 
-/* ************************
-  Loading (or reloading) the data into a collection
-   ************************ */
-// this route loads in the courses into the Course collection
-// or updates the courses if it is not a new collection
-
-app.get("/upsertDB", async (req, res, next) => {
-  //await Course.deleteMany({})
-  for (course of courses) {
-    const { subject, coursenum, section, term } = course;
-    const num = getNum(coursenum);
-    course.num = num;
-    course.suffix = coursenum.slice(num.length);
-    await Course.findOneAndUpdate(
-      { subject, coursenum, section, term },
-      course,
-      { upsert: true }
-    );
-  }
-  const num = await Course.find({}).count();
-  res.send("data uploaded: " + num);
-});
-
-
 
 
 app.use(isLoggedIn);
