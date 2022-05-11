@@ -1,0 +1,32 @@
+<h3>Search Result</h3>
+
+<hr />
+<h6>We have <%=prizes.length%> Mobel Prizes found based on your search</h6>
+
+<% if (prizes.length == 0){%>
+<hr />
+<p>There are no prizes found with the given search.</p>
+<% } else if (prizes.length > 0) { %>
+<div class="d-flex flex-wrap text-start overflow-scroll">
+  <% for (prize of prizes) {%>
+  <div class="p-3 m-5 w-25 border border-primary bg-warning border-3">
+    <b
+      ><%= prize.year %> <%= prize.category %>
+      <br />
+      <hr />
+      Laureates :
+      <ul>
+        <% if(prize.laureates) {%> <% for (laureate of prize.laureates){ %>
+        <li><%= laureate.firstname %> <%= laureate.surname %> <br /></li>
+
+        <% } %> <%}%>
+      </ul> </b
+    ><br />
+  </div>
+  <%}%> <%}%>
+
+  <!-- <pre>
+         <%= JSON.stringify(prizes,null,5) %>
+    </pre
+  > -->
+</div>
